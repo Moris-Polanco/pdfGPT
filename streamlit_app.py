@@ -188,25 +188,25 @@ with st.Blocks() as demo:
             answer = gr.Textbox(label='The answer to your question is :')
 
         btn.click(question_answer, inputs=[url, file, question,openAI_key], outputs=[answer])
-#openai.api_key = os.getenv('Your_Key_Here') 
-demo.launch()
+        #openai.api_key = os.getenv('Your_Key_Here') 
+        demo.launch()
 
 
-# import streamlit as st
+        # import streamlit as st
 
-# #Define the app layout
-# st.markdown(f'<center><h1>{title}</h1></center>', unsafe_allow_html=True)
-# st.markdown(description)
+        # #Define the app layout
+        # st.markdown(f'<center><h1>{title}</h1></center>', unsafe_allow_html=True)
+        # st.markdown(description)
 
-# col1, col2 = st.columns(2)
+        # col1, col2 = st.columns(2)
 
-# # Define the inputs in the first column
-# with col1:
-#     url = st.text_input('URL')
-#     st.markdown("<center><h6>or<h6></center>", unsafe_allow_html=True)
-#     file = st.file_uploader('PDF', type='pdf')
-#     question = st.text_input('question')
-#     btn = st.button('Submit')
+        # # Define the inputs in the first column
+        # with col1:
+        #     url = st.text_input('URL')
+        #     st.markdown("<center><h6>or<h6></center>", unsafe_allow_html=True)
+        #     file = st.file_uploader('PDF', type='pdf')
+        #     question = st.text_input('question')
+        #     btn = st.button('Submit')
 
 # # Define the output in the second column
 # with col2:
