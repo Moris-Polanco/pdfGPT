@@ -101,7 +101,7 @@ def load_recommender(path, start_page=1):
 
 
 def generate_text(openAI_key,prompt, engine="text-davinci-003"):
-    openai.api_key = openAI_key
+    openai.api_key = os.environ.get("OPENAI_API_KEY")
     completions = openai.Completion.create(
         engine=engine,
         prompt=prompt,
