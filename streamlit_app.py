@@ -134,3 +134,62 @@ def generate_answer(question,openAI_key):
     answer = generate_text(openAI_key, prompt,"text-davinci-003")
     return answer
 
+
+def question_answer(url, file, question,openAI_key):
+    if openAI_key.strip()=='':
+        return '[ERROR]: Please enter you Open AI Key. Get your key here : https://platform.openai.com/account/api-keys'
+    if url.strip() == '' and file == None:
+        return '[ERROR]: Both URL and PDF is empty. Provide atleast one.'
+    
+    if url.strip() != '' and file != None:
+        return '[ERROR]: Both URL and PDF is provided. Please provide only one (eiter URL or PDF).'
+
+    if url.strip() != '':
+        glob_url = url
+        download_pdf(glob_url, 'corpus.pdf')
+        load_recommender('corpus.pdf')
+
+    else:
+        old_file_name = file.name
+        file_name = file.name
+        file_name = file_name[:-12] + file_name[-4:]
+        os.rename(old_file_name, file_name)
+        load_recommender(file_name)
+
+    if question.strip() == '':
+        return '[ERROR]: Question field is empty'
+
+    return generate_answer(question,openAI_key)
+
+
+recommender = SemanticSearch()
+
+title = 'PDF GPT'
+description = """ What is PDF GPT ?
+1. The problem is that Open AI has a 4K token limit and cannot take an entire PDF file as input. Additionally, it sometimes returns irrelevant responses due to poor embeddings. ChatGPT cannot directly talk to external data. The solution is PDF GPT, which allows you to chat with an uploaded PDF file using GPT functionalities. The application breaks the document into smaller chunks and generates embeddings using a powerful Deep Averaging Network Encoder. A semantic search is performed on your query, and the top relevant chunks are used to generate a response.
+2. The returned response can even cite the page number in square brackets([]) where the information is located, adding credibility to the responses and helping to locate pertinent information quickly. The Responses are much better than the naive responses by Open AI."""
+
+# Define the app layout
+st.markdown(f'<center><h1>{title}</h1></center>', unsafe_allow_html=True)
+st.markdown(description)
+
+col1, col2 = st.columns(2)
+
+# Define the inputs in the first column
+with col1:
+    st.markdown(f'<p style="text-align:center">Get your Open AI API key <a href="https://platform.openai.com/account/api-keys">here</a></p>', unsafe_allow_html=True)
+    url = st.text_input('Enter PDF URL here')
+    st.markdown("<center><h4>OR<h4></center>", unsafe_allow_html=True)
+    file = st.file_uploader('Upload your PDF/ Research Paper / Book here', type='pdf')
+    question = st.text_input('Enter your question here')
+    btn = st.button('Submit')
+
+# Define the output in the second column
+with col2:
+    answer = st.empty()
+
+# Define the button action
+if btn:
+    answer_value = question_answer(url, file, question, openAI_key)
+    answer.text('The answer to your question is : ' + answer_value)
+
