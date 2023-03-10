@@ -194,4 +194,4 @@ if btn:
     answer.text('The answer to your question is : ' + answer_value)
     
      btn.click(question_answer, inputs=[url, file, question,openAI_key], outputs=[answer])
-st.streamlit(title)
+st.set_page_config(page_title=title)
