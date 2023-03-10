@@ -194,31 +194,4 @@ if btn:
     answer.text('The answer to your question is : ' + answer_value)
     
      btn.click(question_answer, inputs=[url, file, question,openAI_key], outputs=[answer])
-     st.streamlit(title)
-
-
-# import streamlit as st
-
-# #Define the app layout
-# st.markdown(f'<center><h1>{title}</h1></center>', unsafe_allow_html=True)
-# st.markdown(description)
-
-# col1, col2 = st.columns(2)
-
-# # Define the inputs in the first column
-# with col1:
-#     url = st.text_input('URL')
-#     st.markdown("<center><h6>or<h6></center>", unsafe_allow_html=True)
-#     file = st.file_uploader('PDF', type='pdf')
-#     question = st.text_input('question')
-#     btn = st.button('Submit')
-
-# # Define the output in the second column
-# with col2:
-#     answer = st.text_input('answer')
-
-# # Define the button action
-# if btn:
-#     answer_value = question_answer(url, file, question)
-#     answer.value = answer_value
-
+st.streamlit(title)
