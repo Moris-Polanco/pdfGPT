@@ -6,7 +6,6 @@ import os
 # Authenticate with the OpenAI API
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 
-
 # Define the function to extract text from a PDF file
 def extract_text(pdf_file):
     with pdfplumber.load(pdf_file) as pdf:
@@ -18,7 +17,7 @@ def extract_text(pdf_file):
 # Define the function to generate a response using the GPT-3 API
 def generate_response(prompt, model_engine):
     completions = openai.Completion.create(
-        engine=davinci,
+        engine=model_engine,
         prompt=prompt,
         max_tokens=1024,
         n=1,
@@ -43,7 +42,7 @@ def app():
 
         if question:
             # Generate the response using the GPT-3 API
-            model_engine = "davinci"
+            model_engine = "text-davinci-003"
             prompt = f"What is the answer to the following question about the PDF document: {question}\nPDF text: {text}\nAnswer:"
             response = generate_response(prompt, model_engine)
 
