@@ -93,6 +93,7 @@ class SemanticSearch:
 
 
 
+
 def load_recommender(path, start_page=1):
     global recommender
     texts = pdf_to_text(path, start_page=start_page)
