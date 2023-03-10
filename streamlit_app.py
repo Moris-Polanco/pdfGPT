@@ -107,8 +107,8 @@ def generate_text(openAI_key,prompt, engine="text-davinci-003"):
         prompt=prompt,
         max_tokens=512,
         n=1,
-        stop=None
-        temperature=0.7,
+        stop=None,
+        temperature=0.7
     )
     message = completions.choices[0].text
     return message
