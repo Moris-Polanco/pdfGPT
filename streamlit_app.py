@@ -15,14 +15,15 @@ def extract_text(pdf_file):
         return text
 
 # Define the function to generate a response using the GPT-3 API
-def generate_response(prompt, model_engine):
-    completions = openai.Completion.create(
-        engine=model_engine,
+def generate_response (prompt, max_tokens):
+    response = openai.Completion.create(
+        engine="text-davinci-003",
         prompt=prompt,
-        max_tokens=1024,
-        n=1,
-        stop=None,
-        temperature=0.5,
+        temperature=0.7, 
+        max_tokens=2050,
+        top_p=1,
+        frequency_penalty=0.0,
+        presence_penalty=0.0
     )
     return completions.choices[0].text.strip()
 
