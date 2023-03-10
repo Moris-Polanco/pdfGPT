@@ -177,7 +177,6 @@ with st.Blocks() as demo:
         
         with st.Group():
             st.Markdown(f'<p style="text-align:center">Get your Open AI API key <a href="https://platform.openai.com/account/api-keys">here</a></p>')
-            openAI_key=gr.Textbox(label='Enter your OpenAI API key here')
             url = gr.Textbox(label='Enter PDF URL here')
             st.Markdown("<center><h4>OR<h4></center>")
             file = st.File(label='Upload your PDF/ Research Paper / Book here', file_types=['.pdf'])
