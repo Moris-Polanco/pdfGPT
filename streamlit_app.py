@@ -8,6 +8,8 @@ import os
 from sklearn.neighbors import NearestNeighbors
 import streamlit as st
 
+openai.api_key = os.environ.get("OPENAI_API_KEY")
+
 def download_pdf(url, output_path):
     urllib.request.urlretrieve(url, output_path)
 
@@ -100,7 +102,6 @@ def load_recommender(path, start_page=1):
 
 
 def generate_text(openAI_key,prompt, engine="text-davinci-003"):
-    openai.api_key = os.environ.get("OPENAI_API_KEY")
     completions = openai.Completion.create(
         engine=engine,
         prompt=prompt,
