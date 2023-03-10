@@ -168,21 +168,21 @@ description = """ What is PDF GPT ?
 1. The problem is that Open AI has a 4K token limit and cannot take an entire PDF file as input. Additionally, it sometimes returns irrelevant responses due to poor embeddings. ChatGPT cannot directly talk to external data. The solution is PDF GPT, which allows you to chat with an uploaded PDF file using GPT functionalities. The application breaks the document into smaller chunks and generates embeddings using a powerful Deep Averaging Network Encoder. A semantic search is performed on your query, and the top relevant chunks are used to generate a response.
 2. The returned response can even cite the page number in square brackets([]) where the information is located, adding credibility to the responses and helping to locate pertinent information quickly. The Responses are much better than the naive responses by Open AI."""
 
-with gr.Blocks() as demo:
+with st.Blocks() as demo:
 
-    gr.Markdown(f'<center><h1>{title}</h1></center>')
-    gr.Markdown(description)
+    st.Markdown(f'<center><h1>{title}</h1></center>')
+    st.Markdown(description)
 
-    with gr.Row():
+    with st.Row():
         
-        with gr.Group():
-            gr.Markdown(f'<p style="text-align:center">Get your Open AI API key <a href="https://platform.openai.com/account/api-keys">here</a></p>')
+        with st.Group():
+            st.Markdown(f'<p style="text-align:center">Get your Open AI API key <a href="https://platform.openai.com/account/api-keys">here</a></p>')
             openAI_key=gr.Textbox(label='Enter your OpenAI API key here')
             url = gr.Textbox(label='Enter PDF URL here')
-            gr.Markdown("<center><h4>OR<h4></center>")
-            file = gr.File(label='Upload your PDF/ Research Paper / Book here', file_types=['.pdf'])
-            question = gr.Textbox(label='Enter your question here')
-            btn = gr.Button(value='Submit')
+            st.Markdown("<center><h4>OR<h4></center>")
+            file = st.File(label='Upload your PDF/ Research Paper / Book here', file_types=['.pdf'])
+            question = st.Textbox(label='Enter your question here')
+            btn = st.Button(value='Submit')
             btn.style(full_width=True)
 
         with gr.Group():
