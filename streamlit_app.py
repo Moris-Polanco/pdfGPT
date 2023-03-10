@@ -1,6 +1,7 @@
 import streamlit as st
 import pdfplumber
 import openai
+import os
 
 # Authenticate with the OpenAI API
 openai.api_key = os.environ.get("OPENAI_API_KEY")
