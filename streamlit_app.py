@@ -18,7 +18,7 @@ def extract_text(pdf_file):
 # Define the function to generate a response using the GPT-3 API
 def generate_response(prompt, model_engine):
     completions = openai.Completion.create(
-        engine=text-davinci-003,
+        engine=davinci,
         prompt=prompt,
         max_tokens=1024,
         n=1,
@@ -43,7 +43,7 @@ def app():
 
         if question:
             # Generate the response using the GPT-3 API
-            model_engine = "text-davinci-003"
+            model_engine = "davinci"
             prompt = f"What is the answer to the following question about the PDF document: {question}\nPDF text: {text}\nAnswer:"
             response = generate_response(prompt, model_engine)
 
