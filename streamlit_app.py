@@ -102,7 +102,7 @@ def load_recommender(path, start_page=1):
     return 'Corpus Loaded.'
 
 
-def generate_text(openAI_key,prompt, engine="text-davinci-003"):
+def generate_text(prompt, engine="text-davinci-003"):
     completions = openai.Completion.create(
         engine=engine,
         prompt=prompt,
@@ -115,7 +115,7 @@ def generate_text(openAI_key,prompt, engine="text-davinci-003"):
     return message
 
 
-def generate_answer(question,openAI_key):
+def generate_answer(question):
     topn_chunks = recommender(question)
     prompt = ""
     prompt += 'search results:\n\n'
@@ -132,16 +132,16 @@ def generate_answer(question,openAI_key):
               "answer should be short and concise.\n\nQuery: {question}\nAnswer: "
     
     prompt += f"Query: {question}\nAnswer:"
-    answer = generate_text(openAI_key, prompt,"text-davinci-003")
+    answer = generate_text(prompt,"text-davinci-003")
     return answer
 
 
-def question_answer(url, file, question,openAI_key):
+def question_answer(url, file, question):
 
     if question.strip() == '':
         return '[ERROR]: Question field is empty'
 
-    return generate_answer(question,openAI_key)
+    return generate_answer(question)
 
 
 recommender = SemanticSearch()
@@ -172,8 +172,8 @@ with col2:
 
 # Define the button action
 if btn:
-    answer_value = question_answer(url, file, question, openAI_key)
+    answer_value = question_answer(url, file, question)
     answer.text('The answer to your question is : ' + answer_value)
     
-     btn.click(question_answer, inputs=[url, file, question,openAI_key], outputs=[answer])
+     btn.click(question_answer, inputs=[url, file, question], outputs=[answer])
 st.set_page_config(page_title=title)
