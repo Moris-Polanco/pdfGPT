@@ -137,25 +137,6 @@ def generate_answer(question,openAI_key):
 
 
 def question_answer(url, file, question,openAI_key):
-    if openAI_key.strip()=='':
-        return '[ERROR]: Please enter you Open AI Key. Get your key here : https://platform.openai.com/account/api-keys'
-    if url.strip() == '' and file == None:
-        return '[ERROR]: Both URL and PDF is empty. Provide atleast one.'
-    
-    if url.strip() != '' and file != None:
-        return '[ERROR]: Both URL and PDF is provided. Please provide only one (eiter URL or PDF).'
-
-    if url.strip() != '':
-        glob_url = url
-        download_pdf(glob_url, 'corpus.pdf')
-        load_recommender('corpus.pdf')
-
-    else:
-        old_file_name = file.name
-        file_name = file.name
-        file_name = file_name[:-12] + file_name[-4:]
-        os.rename(old_file_name, file_name)
-        load_recommender(file_name)
 
     if question.strip() == '':
         return '[ERROR]: Question field is empty'
