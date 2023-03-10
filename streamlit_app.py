@@ -7,6 +7,7 @@ import openai
 import gradio as gr
 import os
 from sklearn.neighbors import NearestNeighbors
+import streamlit as st
 
 def download_pdf(url, output_path):
     urllib.request.urlretrieve(url, output_path)
@@ -106,7 +107,7 @@ def generate_text(openAI_key,prompt, engine="text-davinci-003"):
         prompt=prompt,
         max_tokens=512,
         n=1,
-        stop=None,
+        stop=None
         temperature=0.7,
     )
     message = completions.choices[0].text
@@ -217,3 +218,4 @@ demo.launch()
 # if btn:
 #     answer_value = question_answer(url, file, question)
 #     answer.value = answer_value
+
