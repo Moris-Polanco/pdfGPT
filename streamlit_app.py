@@ -3,7 +3,8 @@ import pdfplumber
 import openai
 
 # Authenticate with the OpenAI API
-openai.api_key = "YOUR_API_KEY"
+openai.api_key = os.environ.get("OPENAI_API_KEY")
+
 
 # Define the function to extract text from a PDF file
 def extract_text(pdf_file):
