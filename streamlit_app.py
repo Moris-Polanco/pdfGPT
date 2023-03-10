@@ -4,7 +4,6 @@ import re
 import numpy as np
 import tensorflow_hub as hub
 import openai
-import gradio as gr
 import os
 from sklearn.neighbors import NearestNeighbors
 import streamlit as st
