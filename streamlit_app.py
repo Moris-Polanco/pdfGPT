@@ -49,3 +49,6 @@ def app():
 
             # Display the response
             st.text_area('Response', response)
+ # Ejecuta la aplicación
+if __name__ == "__main__":
+    app()
